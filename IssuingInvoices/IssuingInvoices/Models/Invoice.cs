@@ -15,5 +15,6 @@ namespace IssuingInvoices.Models
         public double TotalPrice { get; set; }
         public string ClientName { get; set; }
         public virtual ICollection<SoldItem> SoldItems { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
