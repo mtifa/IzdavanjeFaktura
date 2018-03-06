@@ -18,7 +18,7 @@ namespace IssuingInvoices.Models
         }
     }
 
-    /*public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
             : base("InvoicesModel", throwIfV1Schema: false)
@@ -29,5 +29,5 @@ namespace IssuingInvoices.Models
         {
             return new ApplicationDbContext();
         }
-    }*/
+    }
 }
