@@ -16,10 +16,33 @@ namespace IssuingInvoices.Controllers
         private InvoicesModel db = new InvoicesModel();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            return View(db.Products.ToList());
+            return View(db.Products.Where(x => x.Description == search || search == null).ToList()); //return View(db.Products.ToList());
         }
+        /*[HttpPost]
+        public ActionResult SubmitSelected(InvoicesModel model)
+        {
+            // get the ids of the items selected:
+            var selectedIds = model.getSelectedIds();
+
+            // Use the ids to retrieve the records for the selected people
+            // from the database:
+            var selectedProducts = from x in db.Products
+                                 where selectedIds.Contains(x.ProductId)
+                                 select x;
+
+            // Process according to your requirements:
+            foreach (var product in selectedProducts)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    string.Format("{0}", product.Description));
+            }
+
+            // Redirect somewhere meaningful (probably to somewhere showing 
+            // the results of your processing):
+            return RedirectToAction("Index");
+        }*/
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)

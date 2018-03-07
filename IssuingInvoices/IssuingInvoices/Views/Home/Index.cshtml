@@ -13,13 +13,17 @@
         <p>
             Lorem ipsum
         </p>
-        <button class="btn btn-primary">Stvori fakturu</button>
+        <button class="btn-group">
+            @Html.ActionLink("Stvori fakturu", "Index", new { controller = "Products" })
+        </button>
     </div>
     <div class="col-md-4">
         <h2>Pregled faktura</h2>
         <p>
             Lorem ipsum
         </p>
-        <button class="btn btn-primary">Pregled svih faktura</button>
+        <button class="btn-group">
+            @Html.ActionLink("Pregled faktura", "Index", new { controller = "Products" })
+        </button>
     </div>
 </div>

@@ -1,56 +1,70 @@
 ﻿@model IEnumerable<IssuingInvoices.Models.Product>
 
 @{
-    ViewBag.Title = "Stvaranje proizvoda";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    /**/
+
+        ViewBag.Title = "Proizvodi";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Stvaranje proizvoda</h2>
+<h2>Proizvodi</h2>
+<button class="btn-default">
+    @Html.ActionLink("Kreiraj novi proizvod", "Create")
+</button>
+<hr />
+@using (Html.BeginForm("Index", "Products", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" name="submitSearch" value="Traži" class="glyphicon-search"/>
+}
+@using (Html.BeginForm("SubmitSelected", "Product", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+{
+    <table class="table">
+        <tr>
+            <th>Odaberi</th>
+            <th>
+                Opis
+            </th>
+            <th>
+                Količina
+            </th>
+            <th>
+                Jedinična cijena bez poreza
+            </th>
+            <th>
+                Ukupna cijena bez poreza
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Kreiraj novi proizvod", "Kreiraj")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NettoPrice)
-        </th>
-        <th></th>
-        <th>Check</th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NettoPrice)
-        </td>
-        <td>
-            @Html.ActionLink("Uredi", "Uredi", new { id=item.ProductId }) |
-            @Html.ActionLink("Detalji", "Detalji", new { id=item.ProductId }) |
-            @Html.ActionLink("Izbriši", "Izbriši", new { id=item.ProductId })
-        </td>
-        <td>
-            @Html.CheckBox("Check")
-        </td>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.CheckBox("Check")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NettoPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Uredi", "Edit", new { id = item.ProductId }) |
+                    @Html.ActionLink("Detalji", "Details", new { id = item.ProductId }) |
+                    @Html.ActionLink("Izbriši", "Delete", new { id = item.ProductId })
+                </td>
+            </tr>
+        }
+    </table>
+    <hr />
+    <input type="submit" name="operation" id="submit" value="Spremi" class="btn-success"/>
+    <button class="btn-danger" id="cancel">Odbaci</button>
 }
 
-</table>
