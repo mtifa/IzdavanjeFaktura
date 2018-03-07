@@ -9,6 +9,7 @@ namespace IssuingInvoices
     using System.Threading.Tasks;
     using System.Security.Claims;
     using Microsoft.AspNet.Identity;
+    using IssuingInvoices.Models;
 
     public partial class InvoicesModel : IdentityDbContext<ApplicationUser>
     {
@@ -18,7 +19,6 @@ namespace IssuingInvoices
         }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<SoldItem> SoldItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

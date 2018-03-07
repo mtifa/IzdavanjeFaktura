@@ -17,11 +17,10 @@
     @Html.TextBox("search")
     <input type="submit" name="submitSearch" value="Traži" class="glyphicon-search"/>
 }
-@using (Html.BeginForm("SubmitSelected", "Product", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+@using (Html.BeginForm("SubmitSelected", "Invoices", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
 {
     <table class="table">
         <tr>
-            <th>Odaberi</th>
             <th>
                 Opis
             </th>
@@ -41,9 +40,6 @@
         {
             <tr>
                 <td>
-                    @Html.CheckBox("Check")
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
@@ -56,6 +52,7 @@
                     @Html.DisplayFor(modelItem => item.NettoPrice)
                 </td>
                 <td>
+                    @Html.ActionLink("Dodaj", "Add", new { id = item.ProductId }) |
                     @Html.ActionLink("Uredi", "Edit", new { id = item.ProductId }) |
                     @Html.ActionLink("Detalji", "Details", new { id = item.ProductId }) |
                     @Html.ActionLink("Izbriši", "Delete", new { id = item.ProductId })

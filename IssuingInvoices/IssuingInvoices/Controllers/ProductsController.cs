@@ -8,41 +8,53 @@ using System.Web;
 using System.Web.Mvc;
 using IssuingInvoices;
 using IssuingInvoices.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IssuingInvoices.Controllers
 {
     public class ProductsController : Controller
     {
         private InvoicesModel db = new InvoicesModel();
+        private List<int?> selectedIds = new List<int?>();
+        private ApplicationUserManager userManager;
+
+        public ProductsController()
+        {
+            userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+        }
 
         // GET: Products
         public ActionResult Index(string search)
         {
             return View(db.Products.Where(x => x.Description == search || search == null).ToList()); //return View(db.Products.ToList());
         }
-        /*[HttpPost]
+        public ActionResult Add(int? id)
+        {
+            selectedIds.Add(id);
+            return View();
+        }
+        [HttpPost]
         public ActionResult SubmitSelected(InvoicesModel model)
         {
-            // get the ids of the items selected:
-            var selectedIds = model.getSelectedIds();
-
-            // Use the ids to retrieve the records for the selected people
-            // from the database:
             var selectedProducts = from x in db.Products
                                  where selectedIds.Contains(x.ProductId)
                                  select x;
 
-            // Process according to your requirements:
             foreach (var product in selectedProducts)
             {
-                System.Diagnostics.Debug.WriteLine(
-                    string.Format("{0}", product.Description));
+                System.Diagnostics.Debug.WriteLine(string.Format("{0}", product.Description));
+                Invoice invoice = new Invoice();
+                invoice.Products.Add(product);
+                var user = userManager.FindById(User.Identity.GetUserId());
+                invoice.User = user;
+
+                db.Invoices.Add(invoice);
             }
 
-            // Redirect somewhere meaningful (probably to somewhere showing 
-            // the results of your processing):
+            // Redirect somewhere meaningful (probably to somewhere showing the results of your processing):
             return RedirectToAction("Index");
-        }*/
+        }
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)
