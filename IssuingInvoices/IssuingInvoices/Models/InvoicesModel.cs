@@ -9,7 +9,6 @@ namespace IssuingInvoices
     using System.Threading.Tasks;
     using System.Security.Claims;
     using Microsoft.AspNet.Identity;
-    using IssuingInvoices.Models;
 
     public partial class InvoicesModel : IdentityDbContext<ApplicationUser>
     {
@@ -22,10 +21,8 @@ namespace IssuingInvoices
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Configurations.Add(new IdentityUserLoginConfiguration());
             modelBuilder.Configurations.Add(new IdentityUserRoleConfiguration());
-
         }
     }
 }

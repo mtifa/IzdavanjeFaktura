@@ -1,0 +1,49 @@
+﻿@model IEnumerable<IssuingInvoices.Models.Product>
+@{
+    ViewBag.Title = "Invoice item";
+}
+<h2 class="text-center">Proizvodi</h2>
+<h4 class="text-center">Br. proizvoda: @ViewData["productId"]</h4>
+<button class="btn-default – Default">
+    @Html.ActionLink("Dodaj novu stavku", "AddProduct", new { id = ViewData["invoiceId"] })
+</button>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NettoPrice)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NettoPrice)
+            </td>
+            <td>
+               @Html.ActionLink("Izbriši", "DeleteProduct", new { id = item.ProductId, invoiceId = item.Invoice.InvoiceId })
+            </td>
+        </tr>
+    }
+</table>
+<div class="text-center">
+    @Html.ActionLink("Vrati se na listu", "Index")
+</div>

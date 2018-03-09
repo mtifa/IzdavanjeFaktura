@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -195,13 +196,23 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MEFExtensions\IVatSetUp.cs" />
+    <Compile Include="MEFExtensions\MefContentLoader.cs" />
+    <Compile Include="MEFExtensions\VatSetUp.cs" />
+    <Compile Include="Migrations\201803081341163_Invoice item.cs" />
+    <Compile Include="Migrations\201803081341163_Invoice item.Designer.cs">
+      <DependentUpon>201803081341163_Invoice item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803091138124_Final.cs" />
+    <Compile Include="Migrations\201803091138124_Final.Designer.cs">
+      <DependentUpon>201803091138124_Final.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityUserLoginConfiguration.cs" />
     <Compile Include="Models\IdentityUserRoleConfiguration.cs" />
-    <Compile Include="InvoicesModel.cs" />
+    <Compile Include="Models\InvoicesModel.cs" />
     <Compile Include="Migrations\201803052256259_Mijo.cs" />
     <Compile Include="Migrations\201803052256259_Mijo.Designer.cs">
       <DependentUpon>201803052256259_Mijo.cs</DependentUpon>
@@ -274,16 +285,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Invoices\Create.cshtml" />
     <Content Include="Views\Invoices\Delete.cshtml" />
     <Content Include="Views\Invoices\Details.cshtml" />
     <Content Include="Views\Invoices\Edit.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Invoices\Products.cshtml" />
+    <Content Include="Views\Invoices\AddProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +315,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803061135590_Enterw.resx">
       <DependentUpon>201803061135590_Enterw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803081341163_Invoice item.resx">
+      <DependentUpon>201803081341163_Invoice item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803091138124_Final.resx">
+      <DependentUpon>201803091138124_Final.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

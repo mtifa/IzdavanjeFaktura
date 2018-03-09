@@ -19,10 +19,8 @@ namespace IssuingInvoices.Models
         [Display(Name = "Ukupna cijena bez poreza")]
         public double NettoPrice
         {
-            get
-            {
-                return Amount * UnitPrice;
-            }
+            get; set;
         }
+        public virtual Invoice Invoice { get; set; }
     }
 }
